@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.ai.mcp.cdc:
+      branch: 0.1.0
+      repo: https://github.com/cessda/cessda.ai.mcp.cdc.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-scarlet-wolverine.sh
+        container: qc.acc_slaphappy-heliotrope-rattlesnake
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-cardinal-newfoundland.sh
+        container: qc.doc_lovely-wisteria-bombay
+      github.com/cessda/cessda.ai.mcp.cdc git:
+        commands:
+        - /usr/bin/env sh .sqa/script.homey-russet-monster.sh
+        container: qc.doc_slaphappy-green-cougar
+      github.com/cessda/cessda.ai.mcp.cdc markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.nerdy-grey-dormouse.sh
+        container: qc.doc_bumpy-orchid-mole
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-asparagus-whale.sh
+        container: qc.lic_boozy-gold-dalmatian
+  QC.Sec:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-malachite-macaque.sh
+        container: qc.sec_silly-lilac-donkey
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-copper-zebra.sh
+        container: qc.sty_scaly-mustard-catfish
+      github.com/cessda/cessda.ai.mcp.cdc hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-buff-rottweiler.sh
+        container: qc.sty_skimpy-orange-cichlid
+  QC.Uni:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-beige-axolotl.sh
+        container: qc.uni_baggy-cerise-bullfrog
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.ai.mcp.cdc get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.silly-chestnut-eagle.sh
+        container: qc.ver_hazy-harlequin-frigatebird
+timeout: 5400
